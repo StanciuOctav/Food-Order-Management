@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.client.ClientController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Search">
+                    <items>
+                        <MenuItem fx:id="orderByName" mnemonicParsing="false" onAction="#filterByName" text="By name" />
+                        <MenuItem fx:id="orderByPrice" mnemonicParsing="false" onAction="#filterByPrice" text="By price" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+
+    <left>
+        <TableView fx:id="tableView" fixedCellSize="20.0" onMouseClicked="#updateSpinnerMaxValue" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="_id" prefWidth="33.600006103515625" resizable="false" text="_id" />
+                <TableColumn fx:id="productName" prefWidth="151.9999771118164" resizable="false" text="productName" />
+                <TableColumn fx:id="price" prefWidth="84.0" resizable="false" text="price" />
+                <TableColumn fx:id="inStock" prefWidth="88.0" resizable="false" text="inStock" />
+            </columns>
+        </TableView>
+    </left>
+
+    <center>
+        <VBox BorderPane.alignment="CENTER">
+         <Label fx:id="nrAllOrder" text="Nr. of orders: ">
+            <VBox.margin>
+               <Insets left="200.0" />
+            </VBox.margin>
+         </Label>
+
+            <Label text="Quantity">
+                <VBox.margin>
+                    <Insets left="50.0" top="50.0" />
+                </VBox.margin>
+            </Label>
+            <Spinner fx:id="spinner" editable="true" max="100000" min="0">
+                <VBox.margin>
+                    <Insets left="50.0" />
+                </VBox.margin>
+            </Spinner>
+
+            <Label text="Your cart">
+                <VBox.margin>
+                    <Insets left="150.0" top="50.0" />
+                </VBox.margin>
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+            </Label>
+            <TableView fx:id="cartTable" prefHeight="200.0" prefWidth="200.0">
+                <columns>
+                    <TableColumn fx:id="cartName" prefWidth="117.59997862577438" text="Name" />
+                    <TableColumn fx:id="cartQuant" prefWidth="104.79995727539062" text="Quantity" />
+                    <TableColumn fx:id="cartPrice" prefWidth="118.39994812011719" text="Price" />
+                </columns>
+            </TableView>
+         <Label fx:id="totalLabel" text="Total: ">
+            <VBox.margin>
+               <Insets left="250.0" />
+            </VBox.margin>
+         </Label>
+
+            <HBox>
+                <VBox.margin>
+                    <Insets top="50.0" />
+                </VBox.margin>
+                <children>
+                    <Button fx:id="addButton" mnemonicParsing="false" onAction="#addProductToCart" text="Add">
+                        <HBox.margin>
+                            <Insets left="10.0" />
+                        </HBox.margin>
+                    </Button>
+
+                    <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeProductFromCart" text="Remove">
+                        <HBox.margin>
+                            <Insets left="10.0" />
+                        </HBox.margin>
+                    </Button>
+               <Button mnemonicParsing="false" onAction="#resetProducts" text="Back">
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+               </Button>
+
+                    <Button fx:id="finishButton" mnemonicParsing="false" onAction="#finishOrder" text="Finish">
+                        <HBox.margin>
+                            <Insets left="100.0" />
+                        </HBox.margin>
+                    </Button>
+
+                </children>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
